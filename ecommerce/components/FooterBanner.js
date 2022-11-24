@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { urlFor } from "../lib/client";
 
-
 const FooterBanner = ({
   footerBanner: {
     discount,
@@ -15,7 +14,7 @@ const FooterBanner = ({
     product,
     desc,
     buttonText,
-    image
+    image,
   },
 }) => {
   return (

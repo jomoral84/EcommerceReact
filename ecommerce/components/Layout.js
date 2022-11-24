@@ -1,10 +1,26 @@
 import React from "react";
+import Head from "next/head";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
-const Layout = () => {
+
+
+const Layout = ({ children }) => {
   return (
-    <>
-      <h1>Banner</h1>
-    </>
+    <div className="layout">
+      <Head>
+        <title>Ecommerce App</title>
+      </Head>
+      <header>
+        <Navbar />
+      </header>
+      <main className="main-container">{children}</main>
+      <footer>
+        <Footer/>
+
+        </footer>
+   
+    </div>
   );
 };
 
