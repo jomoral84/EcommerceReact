@@ -8,10 +8,9 @@ const Navbar = () => {
       <p className="logo">
         <Link href="/"> Shopping Online</Link>
       </p>
-      <button type="button" className="cart-icon" onClick="">
+      <button type="button" className="cart-icon">
         <AiOutlineShopping />
-          <span className="cart-item-qty">1</span>
-      
+        <span className="cart-item-qty">1</span>
       </button>
     </div>
   );
