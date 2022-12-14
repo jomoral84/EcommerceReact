@@ -5,14 +5,16 @@ import { AiOutlineShopping } from "react-icons/ai";
 const Navbar = () => {
   return (
     <div className="navbar-container">
-          <p className="logo">
-            <Link href="/"> Shopping Online</Link>
-          </p>
-          <button type="button" className="cart-icon">
-
-          </button>
+      <p className="logo">
+        <Link href="/"> Shopping Online</Link>
+      </p>
+      <button type="button" className="cart-icon" onClick="">
+        <AiOutlineShopping />
+          <span className="cart-item-qty">1</span>
+      
+      </button>
     </div>
-  )
+  );
 };
 
 export default Navbar;
