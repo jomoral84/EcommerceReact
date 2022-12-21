@@ -7,10 +7,12 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 import Product from "../../components/Product";
+import { useStateContext } from "../../context/stateContext";
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, price, details } = product;
   const [index, setIndex] = useState(0);
+  const { decreaseQty, incrementQty, qty, onAdd } = useStateContext();
 
   return (
     <div>
@@ -54,17 +56,21 @@ const ProductDetails = ({ product, products }) => {
           <div className="quantity">
             <h3>Cantidad</h3>
             <p className="quantity-desc">
-              <span className="minus">
+              <span className="minus" onClick={decreaseQty}>
                 <AiOutlineMinus />
               </span>
-              <span className="num">0</span>
-              <span className="plus">
+              <span className="num">{qty}</span>
+              <span className="plus" onClick={incrementQty}>
                 <AiOutlinePlus />
               </span>
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart">
+            <button
+              type="button"
+              className="add-to-cart"
+              onClick={() => onAdd(product, qty)}
+            >
               Añadir al carro
             </button>
             <button type="button" className="buy-now">
