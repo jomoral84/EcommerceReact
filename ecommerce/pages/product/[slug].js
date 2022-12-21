@@ -17,12 +17,21 @@ const ProductDetails = ({ product, products }) => {
       <div className="product-detail-container">
         <div>
           <div className="item-container">
-            <img src={urlFor(image && image[index])} className="product-detail-image" />
+            <img
+              src={urlFor(image && image[index])}
+              className="product-detail-image"
+            />
           </div>
           <div className="small-images-container">
-             {image?.map((item, i ) => (
-              <img src={ urlFor(item)} className={i === index ? 'small-image selected-image' : 'small-image'} onMouseEnter={ () => setIndex(i)}></img>
-             ))}
+            {image?.map((item, i) => (
+              <img
+                src={urlFor(item)}
+                className={
+                  i === index ? "small-image selected-image" : "small-image"
+                }
+                onMouseEnter={() => setIndex(i)}
+              ></img>
+            ))}
           </div>
         </div>
         <div className="product-detail-desc">
@@ -45,28 +54,34 @@ const ProductDetails = ({ product, products }) => {
           <div className="quantity">
             <h3>Cantidad</h3>
             <p className="quantity-desc">
-              <span className="minus"><AiOutlineMinus/></span>
+              <span className="minus">
+                <AiOutlineMinus />
+              </span>
               <span className="num">0</span>
-              <span className="plus"><AiOutlinePlus/></span>
-              
+              <span className="plus">
+                <AiOutlinePlus />
+              </span>
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart" >Añadir al carro</button>
-            <button type="button" className="buy-now" >Comprar Ahora</button>
+            <button type="button" className="add-to-cart">
+              Añadir al carro
+            </button>
+            <button type="button" className="buy-now">
+              Comprar Ahora
+            </button>
           </div>
         </div>
       </div>
       <div className="maylike-products-wrapper">
         <h2>Te podrian interesar...</h2>
         <div className="marquee">
-          <div className="maylike-products-container">
+          <div className="maylike-products-container track">
             {products.map((item) => (
-              <Product key={item._id} product={item}/>
-            ))} 
+              <Product key={item._id} product={item} />
+            ))}
           </div>
         </div>
-        
       </div>
     </div>
   );
