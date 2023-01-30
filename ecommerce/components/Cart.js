@@ -6,7 +6,7 @@ import {
   AiOutlineLeft,
   AiOutlineShopping,
 } from "react-icons/ai";
-import { TiDeleteOutLine } from "react-icons/ti";
+import { TiDeleteOutline } from "react-icons/ti";
 import { toast } from "react-hot-toast";
 
 import { useStateContext } from "../context/stateContext";
@@ -14,7 +14,7 @@ import { urlFor } from "../lib/client";
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart } =
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toogleCartItemQuantity } =
     useStateContext();
 
   return (
@@ -39,10 +39,53 @@ const Cart = () => {
                 className="btn"
                 onClick={() => setShowCart(false)}
               >
-            
                 Continuar Comprando
               </button>
             </Link>
+          </div>
+        )}
+        <div className="product-container">
+          {cartItems.length >= 1 &&
+            cartItems.map((item) => (
+              <div className="product" key={item._id}>
+                <img
+                  src={urlFor(item?.image[0])}
+                  className="cart-product-image"
+                />
+                <div className="item-desc">
+                  <div className="flex top">
+                    <h5>{item.name}</h5>
+                    <h4>{item.price}</h4>
+                  </div>
+                  <div className="flex bottom">
+                    <div>
+                      <p className="quantity-desc">
+                        <span className="minus" onClick={() => toogleCartItemQuantity(item._id, 'dec')}>
+                          <AiOutlineMinus />
+                        </span>
+                        <span className="num" onClick={() => toogleCartItemQuantity(item._id, 'inc')}>{0}</span>
+                        <span className="plus">
+                          <AiOutlinePlus />
+                        </span>
+                      </p>
+                    </div>
+                    <button type="button" className="remove-item">
+                      <TiDeleteOutline />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+        {cartItems.length >= 1 && (
+          <div className="cart-bottom">
+            <div className="total">
+              <h3>Subtotal:</h3>
+              <h3>${totalPrice}</h3>
+            </div>
+            <div className="btn-container">
+              <button type="button" className="btn" onClick=""> Pagar con Stripe</button>
+            </div>
           </div>
         )}
       </div>
