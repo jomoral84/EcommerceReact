@@ -14,8 +14,14 @@ import { urlFor } from "../lib/client";
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toogleCartItemQuantity } =
-    useStateContext();
+  const {
+    totalPrice,
+    totalQuantities,
+    cartItems,
+    setShowCart,
+    toogleCartItemQuantity,
+    onRemove,
+  } = useStateContext();
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -60,16 +66,30 @@ const Cart = () => {
                   <div className="flex bottom">
                     <div>
                       <p className="quantity-desc">
-                        <span className="minus" onClick={() => toogleCartItemQuantity(item._id, 'dec')}>
+                        <span
+                          className="minus"
+                          onClick={() =>
+                            toogleCartItemQuantity(item._id, "dec")
+                          }
+                        >
                           <AiOutlineMinus />
                         </span>
-                        <span className="num" onClick={() => toogleCartItemQuantity(item._id, 'inc')}>{0}</span>
-                        <span className="plus">
+                        <span className="num">{item.quantity}</span>
+                        <span
+                          className="plus"
+                          onClick={() =>
+                            toogleCartItemQuantity(item._id, "inc")
+                          }
+                        >
                           <AiOutlinePlus />
                         </span>
                       </p>
                     </div>
-                    <button type="button" className="remove-item">
+                    <button
+                      type="button"
+                      className="remove-item"
+                      onClick={() => onRemove(item)}
+                    >
                       <TiDeleteOutline />
                     </button>
                   </div>
@@ -80,11 +100,14 @@ const Cart = () => {
         {cartItems.length >= 1 && (
           <div className="cart-bottom">
             <div className="total">
-              <h3>Subtotal:</h3>
+              <h3>Total:</h3>
               <h3>${totalPrice}</h3>
             </div>
             <div className="btn-container">
-              <button type="button" className="btn" onClick=""> Pagar con Stripe</button>
+              <button type="button" className="btn" onClick="">
+                {" "}
+                Pagar con Stripe
+              </button>
             </div>
           </div>
         )}
